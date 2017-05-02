@@ -1,0 +1,3 @@
+
+alias gcdpull='git checkout develop && git pull origin develop'
+alias vim='/usr/local/bin/vim'
