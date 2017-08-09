@@ -16,7 +16,7 @@ export ZSH_THEME="agnoster"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git git-flow rails rake brew heroku textmate ruby osx rvm node npm jira)
+plugins=(git git-flow rails rake brew heroku textmate ruby osx rvm node npm jira ember-cli)
 
 source $ZSH/oh-my-zsh.sh
 
