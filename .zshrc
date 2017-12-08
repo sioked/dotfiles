@@ -16,7 +16,7 @@ export ZSH_THEME="agnoster"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git git-flow rails rake brew heroku textmate ruby osx rvm node npm jira ember-cli)
+plugins=(git git-flow rails rake brew heroku textmate ruby osx rvm node npm jira ember-cli tmux)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -24,7 +24,7 @@ source $ZSH/oh-my-zsh.sh
 source $HOME/.aliases
 
 # Customize to your needs...
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:~/Applications
+export PATH=$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:~/Applications
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -46,3 +46,5 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
+export TERM=xterm-256color

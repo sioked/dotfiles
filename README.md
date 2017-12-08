@@ -44,3 +44,5 @@ To install on a new machine do:
   # Inside vim
   :PlugInstall
   ```
+
+1. Install tmux plugin manager from here [https://github.com/tmux-plugins/tpm](https://github.com/tmux-plugins/tpm)
