@@ -3,7 +3,7 @@ export ZSH=$HOME/.oh-my-zsh
 
 # Set to the name theme to load.
 # Look in ~/.oh-my-zsh/themes/
-export ZSH_THEME="agnoster"
+export ZSH_THEME="pure"
 
 # Set to this to use case-sensitive completion
 # export CASE_SENSITIVE="true"
@@ -16,7 +16,7 @@ export ZSH_THEME="agnoster"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git git-flow rails rake brew heroku textmate ruby osx rvm node npm jira ember-cli tmux)
+plugins=(git git-flow rails rake brew heroku textmate ruby osx rvm node npm jira ember-cli tmux z)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -48,3 +48,10 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 export TERM=xterm-256color
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /Users/sioked/.config/yarn/global/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/sioked/.config/yarn/global/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /Users/sioked/.config/yarn/global/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/sioked/.config/yarn/global/node_modules/tabtab/.completions/sls.zsh

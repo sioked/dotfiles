@@ -46,3 +46,5 @@ To install on a new machine do:
   ```
 
 1. Install tmux plugin manager from here [https://github.com/tmux-plugins/tpm](https://github.com/tmux-plugins/tpm)
+
+1. Inside tmux, do: `ctrl-a I` to install plugins

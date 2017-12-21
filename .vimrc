@@ -11,10 +11,14 @@ Plug 'joshdick/onedark.vim'
 "NerdTree
 Plug 'scrooloose/nerdtree'
 
-"Syntastic
-Plug 'vim-syntastic/syntastic'
+"Commenter - Use <Leader>cc to comment, <Leader>cu to uncomment
+Plug 'scrooloose/nerdcommenter'
 
-"CTRLP - Fuzzy search
+"Ale (syntax checker)
+Plug 'w0rp/ale'
+
+"CTRLP - Fuzzy search - Use c-p to open the search, c-o to prompt to open in a
+"new split
 Plug 'ctrlpvim/ctrlp.vim'
 
 "Airline
@@ -30,6 +34,7 @@ Plug 'elmcast/elm-vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'flowtype/vim-flow'
 Plug 'tomlion/vim-solidity'
+Plug 'tmux-plugins/vim-tmux'
 
 "Search plugins
 Plug 'mileszs/ack.vim'
@@ -45,6 +50,23 @@ Plug 'diepm/vim-rest-console'
 
 "Autocompletion
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+
+" Terminus - Mouse support, cursors when in different modes, etc
+Plug 'wincent/terminus'
+
+" EasyMotion - for moving through the file easier use <Leader><Leader>s to
+" search for character, or <Leader><Leader>w to navigate to words
+Plug 'easymotion/vim-easymotion'
+
+" Surround - For handling modifications in surround - use cs' or cst or cs{ to
+" change surrounding items
+Plug 'tpope/vim-surround'
+
+" Prettier - will make javascript/typescript/graphql files pretty
+" post install (yarn install | npm install) then load plugin only for editing supported files
+" Use with <Leader>p to prettify a file
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+
 call plug#end()
 
 syntax on
@@ -53,20 +75,19 @@ filetype plugin indent on
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
 "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
-if (empty($TMUX))
-  if (has("nvim"))
-    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
-    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  endif
-  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
-  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
-  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
-  if (has("termguicolors"))
-    set termguicolors
-  endif
+if (has("nvim"))
+  "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+endif
+"For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+"Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+" < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+if (has("termguicolors"))
+  set termguicolors
 endif
 
-colorscheme onedark
+colorscheme one
+set background=dark
 set nocompatible
 set shiftwidth=2
 set tabstop=2
@@ -74,10 +95,8 @@ set expandtab
 set textwidth=0
 set encoding=utf-8
 set fillchars+=vert:\
-
-set smartindent
-set copyindent
-set preserveindent
+set cursorcolumn
+set cursorline
 
 set number
 
@@ -86,6 +105,8 @@ set nowritebackup
 set noswapfile
 set undolevels=1000
 set updatecount=100
+set listchars=trail:
+set list
 
 "Configs for powerline
 let g:Powerline_symbols = 'fancy'
@@ -100,40 +121,46 @@ let g:airline_powerline_fonts = 1
 let g:airline_theme='one'
 
 " nerdtree configs
-let NERDTreeQuitOnOpen=0
+let NERDTreeQuitOnOpen=1
+let NERDTreeShowHidden=0
 map <C-\> :NERDTreeToggle<CR>
 map <C-n> :NERDTreeFind<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" Open NerdTree by default
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " ctrlp configs
 set wildignore+=*.so,*.swp,*.zip,*.class,*.jar
+let g:ctrlp_show_hidden = 1
 let g:ctrlp_working_path_mode = "ra"
 let g:ctrlp_custom_ignore = {
-    \ 'dir':    '\v[\/](\.(git|hg|svn)|node_modules|bower_components|target)$',
+    \ 'dir':    '\v[\/](\.(git|hg|svn)|node_modules|bower_components|target|build)$',
     \ 'file':   '',
     \ 'link':   '',
     \ }
 
-" Syntastic
-autocmd FileType javascript let b:syntastic_checkers = findfile('.eslintrc', '.;') != '' ? ['eslint'] : ['standard']
-autocmd FileType javascript let b:syntastic_javascript_eslint_exec = '`npm bin`/eslint'
-
-let g:jsx_ext_required = 0
-autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
-autocmd Filetype json setlocal ts=2 sts=2 sw=2
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
 " Ack/Ag
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
-" Code Completion
+" ALE Fixers
+let g:ale_fixers = {
+\   'javascript': [
+\       'eslint'
+\   ]
+\}
+" ALE navigate between errors
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+" Switching between buffers
+map <Tab> :bnext<CR>
+map <S-Tab> :bprevious<CR>
+
+" NerdCommenter
+let g:NERDSpaceDelims = 1
+let g:NERDDefaultAlign = 'left'
+
+" Keep selected text when indenting
+vnoremap < <gv
+vnoremap > >gv
