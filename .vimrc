@@ -105,8 +105,15 @@ set nowritebackup
 set noswapfile
 set undolevels=1000
 set updatecount=100
-set listchars=trail:
+set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
 set list
+
+" Open new splits below or to the right (more natural)
+set splitbelow
+set splitright
+
+"Preferences
+inoremap jk <esc>
 
 "Configs for powerline
 let g:Powerline_symbols = 'fancy'
