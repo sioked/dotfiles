@@ -16,7 +16,7 @@ export ZSH_THEME="pure"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git git-flow rails rake brew heroku textmate ruby osx rvm node npm jira ember-cli tmux z)
+plugins=(git git-flow rails rake brew heroku textmate ruby osx rvm node npm jira tmux z)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -55,3 +55,5 @@ export TERM=xterm-256color
 # tabtab source for sls package
 # uninstall by removing these lines or running `tabtab uninstall sls`
 [[ -f /Users/sioked/.config/yarn/global/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/sioked/.config/yarn/global/node_modules/tabtab/.completions/sls.zsh
+
+export GPG_KEY=$(tty)
