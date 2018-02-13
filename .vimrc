@@ -67,6 +67,12 @@ Plug 'tpope/vim-surround'
 " Use with <Leader>p to prettify a file
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
+" Snippets plugin
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'epilande/vim-react-snippets'
+
+
 call plug#end()
 
 syntax on
@@ -113,7 +119,17 @@ set splitbelow
 set splitright
 
 "Preferences
+" Use j k key command to exit insert mode
 inoremap jk <esc>
+" Enable jsx syntax highlighting in javascipt files
+let g:jsx_ext_required = 0
+
+"Delimitmate - Enable matching pairs for brackets and arrows
+let delimitMate_matchpairs = "(:),[:],{:},<:>"
+let delimitMate_expand_cr = 1
+let delimitMate_expand_space = 1
+" Remapping this- something was conflicting with it previously
+imap <S-Tab> <Plug>delimitMateS-Tab
 
 "Configs for powerline
 let g:Powerline_symbols = 'fancy'
@@ -154,6 +170,9 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 let g:ale_fixers = {
 \   'javascript': [
 \       'eslint'
+\   ],
+\   'javascript.jsx': [
+\       'eslint'
 \   ]
 \}
 " ALE navigate between errors
@@ -171,3 +190,7 @@ let g:NERDDefaultAlign = 'left'
 " Keep selected text when indenting
 vnoremap < <gv
 vnoremap > >gv
+
+
+" Snippets config - use C-l to select a snippet
+let g:UltiSnipsExpandTrigger="<C-l>"
