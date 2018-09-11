@@ -35,6 +35,7 @@ Plug 'leafgarland/typescript-vim'
 Plug 'flowtype/vim-flow'
 Plug 'tomlion/vim-solidity'
 Plug 'tmux-plugins/vim-tmux'
+Plug 'jparise/vim-graphql'
 
 "Search plugins
 Plug 'mileszs/ack.vim'

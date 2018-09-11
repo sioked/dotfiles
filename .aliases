@@ -3,3 +3,6 @@ alias gcdpull='git checkout develop && git pull origin develop'
 alias vim='/usr/local/bin/vim'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias gitclean='git branch --merged develop | grep -v develop | grep -v staging | grep -v master | xargs -n 1 git branch -d'
+
+# Project specific
+alias rtdb='dropdb right-track-api; createdb right-track-api; npm run db:migrate -- --env local; npm run db:seed -- --env local;'
