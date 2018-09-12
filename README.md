@@ -21,11 +21,8 @@ To install on a new machine do:
 
 1. [https://brew.sh/](homebrew)
 
-1. Homebrew packages
-  `brew install cask hub postgresql vim wget ruby yarn zsh z`
-
-1. Casks
-  `brew cask install iterm2 atom`
+1. Homebrew packages (includes casks)
+  `brew bundle`
 
 1. Fonts
   ```

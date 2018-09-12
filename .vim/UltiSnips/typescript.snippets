@@ -1,0 +1,18 @@
+snippet trfc "Typescript React Functional Component" b
+import * as React from 'react';
+
+interface IProps {
+	$2
+}
+
+function ${1:`!v expand('%:t:r')`}(${3:{...props}: IProps}) {
+	return (
+		<div>
+			$4
+		</div>
+	);
+}
+
+
+export default $1;
+endsnippet
