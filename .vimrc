@@ -3,11 +3,9 @@ call plug#begin('~/.vim/plugged')
 "Sensible defaults
 Plug 'tpope/vim-sensible'
 
-"Solarized Color Scheme
-Plug 'lifepillar/vim-solarized8'
-Plug 'rakr/vim-one'
-Plug 'joshdick/onedark.vim'
-
+"Nova color scheme
+Plug 'trevordmiller/nova-vim'
+" Plug 'zanglg/nova.vim'
 "NerdTree
 Plug 'scrooloose/nerdtree'
 
@@ -26,6 +24,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 "Syntaxes
+Plug 'sheerun/vim-polyglot'
 Plug 'pangloss/vim-javascript'
 Plug 'othree/html5.vim'
 Plug 'hail2u/vim-css3-syntax'
@@ -51,6 +50,7 @@ Plug 'diepm/vim-rest-console'
 
 "Autocompletion
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+Plug 'Quramy/tsuquyomi'
 
 " Terminus - Mouse support, cursors when in different modes, etc
 Plug 'wincent/terminus'
@@ -73,6 +73,9 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'epilande/vim-react-snippets'
 
+" vim-tmux-navigator - allows seamless navigation between windows in vim and
+" panes in tmux
+" Plug 'christoomey/vim-tmux-navigator'
 
 call plug#end()
 
@@ -93,8 +96,9 @@ if (has("termguicolors"))
   set termguicolors
 endif
 
-colorscheme one
-set background=dark
+" colorscheme one
+" set background=dark
+colorscheme nova
 set nocompatible
 set shiftwidth=2
 set tabstop=2
@@ -142,7 +146,36 @@ set termencoding=utf-8
 
 "Airline (powerline alt)
 let g:airline_powerline_fonts = 1
-let g:airline_theme='one'
+let g:airline_theme='minimalist'
+
+" Auto-save sessions 
+function! MakeSession()
+  let b:sessiondir = $HOME . "/.vim/sessions" . getcwd()
+  if (filewritable(b:sessiondir) != 2)
+    exe 'silent !mkdir -p ' b:sessiondir
+    redraw!
+  endif
+  let b:filename = b:sessiondir . '/session.vim'
+  exe "mksession! " . b:filename
+endfunction
+
+function! LoadSession()
+  let b:sessiondir = $HOME . "/.vim/sessions" . getcwd()
+  let b:sessionfile = b:sessiondir . "/session.vim"
+  if (filereadable(b:sessionfile))
+    exe 'source ' b:sessionfile
+  else
+    echo "No session loaded."
+  endif
+endfunction
+
+" Adding automatons for when entering or leaving Vim
+" Only if no arguments passed in
+if(argc() == 0)
+  au VimEnter * nested :call LoadSession()
+  autocmd VimLeave * NERDTreeClose
+  autocmd VimLeave * :call MakeSession()
+endi
 
 " nerdtree configs
 let NERDTreeQuitOnOpen=1
@@ -156,16 +189,19 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " ctrlp configs
 set wildignore+=*.so,*.swp,*.zip,*.class,*.jar
-let g:ctrlp_show_hidden = 1
-let g:ctrlp_working_path_mode = "ra"
-let g:ctrlp_custom_ignore = {
-    \ 'dir':    '\v[\/](\.(git|hg|svn)|node_modules|bower_components|target|build)$',
-    \ 'file':   '',
-    \ 'link':   '',
-    \ }
+let g:ctrlp_lazy_update=100
+let g:ctrlp_show_hidden=0
+let g:ctrlp_user_command='ag %s -l --nocolor -g ""'
+" let g:ctrlp_working_path_mode = "ra"
+" let g:ctrlp_custom_ignore = {
+"     \ 'dir':    '\v[\/](\.(git|hg|svn)|node_modules|bower_components|target|build|dist)$',
+"     \ 'file':   '',
+"     \ 'link':   '',
+"     \ }
 
 " Ack/Ag
 let g:ackprg = 'ag --nogroup --nocolor --column'
+cnoreabbrev Ack Ack!
 
 " ALE Fixers
 let g:ale_fixers = {
@@ -174,7 +210,18 @@ let g:ale_fixers = {
 \   ],
 \   'javascript.jsx': [
 \       'eslint'
-\   ]
+\   ],
+\   'typescript': [
+\       'tslint'
+\   ],
+\}
+
+let g:ale_linters = {
+\   'typescript': [
+\       'tslint',
+\       'prettier',
+\       'tsserver',
+\   ],
 \}
 " ALE navigate between errors
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
@@ -195,3 +242,18 @@ vnoremap > >gv
 
 " Snippets config - use C-l to select a snippet
 let g:UltiSnipsExpandTrigger="<C-l>"
+
+" " vim-tmux-navigator - use <C-h> <C-j> <C-k> <C-l> <C-+> to navigate
+" let g:tmux_navigator_no_mappings = 1
+
+" nnoremap <silent> <C-a> h :TmuxNavigateLeft<cr>
+" nnoremap <silent> <C-a> j :TmuxNavigateDown<cr>
+" nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
+" nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
+" nnoremap <silent> <C-+> :TmuxNavigatePrevious<cr>
+" " Disable tmux navigator when zooming the Vim pane
+" let g:tmux_navigator_disable_when_zoomed = 1
+
+" Save files on focus lost
+au FocusLost * silent! wa
+

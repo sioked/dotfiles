@@ -1,4 +1,6 @@
 .cfg
+.vimsession
+session.vim
 Applications/
 Desktop/
 Documents/

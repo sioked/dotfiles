@@ -1,7 +1,19 @@
 # This is Git's per-user configuration file.
 [user]
 # Please adapt and uncomment the following lines:
-name = Ed Siok
-email = my@email.com
+	name = Ed Siok
+	email = sioked@gmail.com
 [core]
 editor = vim -u NONE -N
+	excludesfile = /Users/sioked/.gitignore
+[alias]
+co = checkout
+br = branch
+cm = commit -m
+branch-name = "!git rev-parse --abbrev-ref HEAD"
+publish = "!git push -u origin $(git branch-name)"
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

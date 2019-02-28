@@ -1,0 +1,1 @@
+/Users/sioked/.config/fisherman/z/functions/zclean.awk

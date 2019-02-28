@@ -57,3 +57,4 @@ export TERM=xterm-256color
 [[ -f /Users/sioked/.config/yarn/global/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/sioked/.config/yarn/global/node_modules/tabtab/.completions/sls.zsh
 
 export GPG_KEY=$(tty)
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

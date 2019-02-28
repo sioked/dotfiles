@@ -6,6 +6,7 @@ tap "justwatchcom/gopass"
 tap "neovim/neovim"
 brew "awscli"
 brew "cask"
+brew "cmake"
 brew "dfu-util"
 brew "elasticsearch", restart_service: true
 brew "elm"
