@@ -1,4 +1,5 @@
 source $HOME/.aliases
+source $HOME/.config/github/keys.config
 export NVM_DIR="$HOME/.nvm"
 function nvm
   bass source ~/.nvm/nvm.sh ';' nvm $argv

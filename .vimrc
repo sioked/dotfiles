@@ -40,7 +40,7 @@ Plug 'jparise/vim-graphql'
 Plug 'mileszs/ack.vim'
 
 "Supertab will help with autocomplete
-Plug 'ervandew/supertab'
+"Plug 'ervandew/supertab'
 
 "delimitMate auto closes brackets, etc
 Plug 'Raimondi/delimitMate'
@@ -49,7 +49,8 @@ Plug 'Raimondi/delimitMate'
 Plug 'diepm/vim-rest-console'
 
 "Autocompletion
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+" Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
 Plug 'Quramy/tsuquyomi'
 
 " Terminus - Mouse support, cursors when in different modes, etc
@@ -126,7 +127,7 @@ set splitright
 "Preferences
 " Use j k key command to exit insert mode
 inoremap jk <esc>
-" Enable jsx syntax highlighting in javascipt files
+" Enable jsx syntax highlighting in javascript files
 let g:jsx_ext_required = 0
 
 "Delimitmate - Enable matching pairs for brackets and arrows
@@ -227,10 +228,6 @@ let g:ale_linters = {
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
-" Switching between buffers
-map <Tab> :bnext<CR>
-map <S-Tab> :bprevious<CR>
-
 " NerdCommenter
 let g:NERDSpaceDelims = 1
 let g:NERDDefaultAlign = 'left'
@@ -243,17 +240,63 @@ vnoremap > >gv
 " Snippets config - use C-l to select a snippet
 let g:UltiSnipsExpandTrigger="<C-l>"
 
-" " vim-tmux-navigator - use <C-h> <C-j> <C-k> <C-l> <C-+> to navigate
-" let g:tmux_navigator_no_mappings = 1
-
-" nnoremap <silent> <C-a> h :TmuxNavigateLeft<cr>
-" nnoremap <silent> <C-a> j :TmuxNavigateDown<cr>
-" nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
-" nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
-" nnoremap <silent> <C-+> :TmuxNavigatePrevious<cr>
-" " Disable tmux navigator when zooming the Vim pane
-" let g:tmux_navigator_disable_when_zoomed = 1
+" Remap C-s to increment a number under cursor (normally C-a)
+nnoremap <C-s> <C-a>
 
 " Save files on focus lost
 au FocusLost * silent! wa
 
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Close any hidden buffers
+" Call this with `:call Wipeout()`
+function! Wipeout()
+  " list of *all* buffer numbers
+  let l:buffers = range(1, bufnr('$'))
+
+  " what tab page are we in?
+  let l:currentTab = tabpagenr()
+  try
+    " go through all tab pages
+    let l:tab = 0
+    while l:tab < tabpagenr('$')
+      let l:tab += 1
+
+      " go through all windows
+      let l:win = 0
+      while l:win < winnr('$')
+        let l:win += 1
+        " whatever buffer is in this window in this tab, remove it from
+        " l:buffers list
+        let l:thisbuf = winbufnr(l:win)
+        call remove(l:buffers, index(l:buffers, l:thisbuf))
+      endwhile
+    endwhile
+
+    " if there are any buffers left, delete them
+    if len(l:buffers)
+      execute 'bwipeout' join(l:buffers)
+    endif
+  finally
+    " go back to our original tab page
+    execute 'tabnext' l:currentTab
+  endtry
+endfunction
+
+" Zoom / Restore window.
+" Currently mapped to C-w z
+function! s:ZoomToggle() abort
+    if exists('t:zoomed') && t:zoomed
+        execute t:zoom_winrestcmd
+        let t:zoomed = 0
+    else
+        let t:zoom_winrestcmd = winrestcmd()
+        resize
+        vertical resize
+        let t:zoomed = 1
+    endif
+endfunction
+command! ZoomToggle call s:ZoomToggle()
+nnoremap <silent> <C-w>z :ZoomToggle<CR>
+
+let g:coc_global_extensions = ['coc-emoji', 'coc-tsserver', 'coc-prettier']
