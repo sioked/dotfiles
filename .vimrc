@@ -6,7 +6,7 @@ Plug 'tpope/vim-sensible'
 "Nova color scheme
 Plug 'trevordmiller/nova-vim'
 " Plug 'zanglg/nova.vim'
-"NerdTree
+"NerdTree - use <ctrl-\> to open
 Plug 'scrooloose/nerdtree'
 
 "Commenter - Use <Leader>cc to comment, <Leader>cu to uncomment
@@ -18,6 +18,11 @@ Plug 'w0rp/ale'
 "CTRLP - Fuzzy search - Use c-p to open the search, c-o to prompt to open in a
 "new split
 Plug 'ctrlpvim/ctrlp.vim'
+
+" Scratch plugin
+"gs opens scratch window
+"gs in visual mode copies selected text into scratch window
+Plug 'mtth/scratch.vim'
 
 "Airline
 Plug 'vim-airline/vim-airline'
@@ -35,23 +40,19 @@ Plug 'flowtype/vim-flow'
 Plug 'tomlion/vim-solidity'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'jparise/vim-graphql'
+Plug 'ianks/vim-tsx'
 
 "Search plugins
 Plug 'mileszs/ack.vim'
-
-"Supertab will help with autocomplete
-"Plug 'ervandew/supertab'
 
 "delimitMate auto closes brackets, etc
 Plug 'Raimondi/delimitMate'
 
 "Rest console
-Plug 'diepm/vim-rest-console'
+"Plug 'diepm/vim-rest-console'
 
 "Autocompletion
-" Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
-Plug 'Quramy/tsuquyomi'
+Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
 
 " Terminus - Mouse support, cursors when in different modes, etc
 Plug 'wincent/terminus'
@@ -77,6 +78,10 @@ Plug 'epilande/vim-react-snippets'
 " vim-tmux-navigator - allows seamless navigation between windows in vim and
 " panes in tmux
 " Plug 'christoomey/vim-tmux-navigator'
+
+" FZF (fuzzy finder) for searching files and other stuff
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
@@ -111,6 +116,7 @@ set cursorcolumn
 set cursorline
 
 set number
+set relativenumber
 
 set nobackup
 set nowritebackup
@@ -148,6 +154,9 @@ set termencoding=utf-8
 "Airline (powerline alt)
 let g:airline_powerline_fonts = 1
 let g:airline_theme='minimalist'
+"Fix for error when using terminal
+let R_setwidth=0
+let R_clear_line=0
 
 " Auto-save sessions 
 function! MakeSession()
@@ -225,8 +234,8 @@ let g:ale_linters = {
 \   ],
 \}
 " ALE navigate between errors
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
+" nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+" nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 " NerdCommenter
 let g:NERDSpaceDelims = 1
@@ -240,7 +249,8 @@ vnoremap > >gv
 " Snippets config - use C-l to select a snippet
 let g:UltiSnipsExpandTrigger="<C-l>"
 
-" Remap C-s to increment a number under cursor (normally C-a)
+" Remap C-s to increment a number under cursor (normally C-a, conflicts with
+" tmux)
 nnoremap <C-s> <C-a>
 
 " Save files on focus lost
@@ -298,5 +308,41 @@ function! s:ZoomToggle() abort
 endfunction
 command! ZoomToggle call s:ZoomToggle()
 nnoremap <silent> <C-w>z :ZoomToggle<CR>
+tmap <C-w>z <C-w>N <bar> :ZoomToggle<CR>
 
-let g:coc_global_extensions = ['coc-emoji', 'coc-tsserver', 'coc-prettier']
+" coc configs!
+" Support for some extensions
+let g:coc_global_extensions = ['coc-emoji', 'coc-tsserver', 'coc-prettier', 'coc-ultisnips']
+" Use Ctrl-j and Ctrl-k to go navigate to issues
+nmap <silent> <C-j> <Plug>(coc-diagnostic-next)
+nmap <silent> <C-k> <Plug>(coc-diagnostic-prev)
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+" Use tab for trigger completion with characters ahead and navigate.
+" " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+" <CR> to confirm completion, use: >
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+imap <silent> <C-x><C-u> <Plug>(coc-complete-custom)
+
+"remap <C-r> to allow pasting in terminal
+tnoremap <expr> <C-r> '<C-w>"'.nr2char(getchar()).'pi'
+
+" Scratch configs
+" Use gs to open the scratch pad
+let g:scratch_horizontal=0
+let g:scratch_top=0
+let g:scratch_persistence_file='.scratch.md'
+let g:scratch_filetype='markdown'
+
+
+" Fzf configs
+" Make sure Ag does not look at the filenames when searching
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)

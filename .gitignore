@@ -2,9 +2,10 @@
 .Trash/
 .bash_history
 .cfg
-.circleci
 .vimsession
+.ignore
 session.vim
+.scratch.md
 Applications/
 Desktop/
 Development/
@@ -15,3 +16,4 @@ Library/
 Movies/
 Music/
 Pictures/
+.env-local
