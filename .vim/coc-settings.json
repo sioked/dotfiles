@@ -1,0 +1,5 @@
+{
+  "coc.source.file.enable": true,
+  "tsserver.log": "normal",
+  "tsserver.enableJavascript": true
+}
