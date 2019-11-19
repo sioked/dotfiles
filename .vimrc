@@ -17,7 +17,7 @@ Plug 'w0rp/ale'
 
 "CTRLP - Fuzzy search - Use c-p to open the search, c-o to prompt to open in a
 "new split
-Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'ctrlpvim/ctrlp.vim'
 
 " Scratch plugin
 "gs opens scratch window
@@ -126,6 +126,7 @@ set updatecount=100
 set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
 set list
 
+
 " Open new splits below or to the right (more natural)
 set splitbelow
 set splitright
@@ -198,10 +199,10 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " ctrlp configs
-set wildignore+=*.so,*.swp,*.zip,*.class,*.jar
-let g:ctrlp_lazy_update=100
-let g:ctrlp_show_hidden=0
-let g:ctrlp_user_command='ag %s -l --nocolor -g ""'
+" set wildignore+=*.so,*.swp,*.zip,*.class,*.jar
+" let g:ctrlp_lazy_update=100
+" let g:ctrlp_show_hidden=0
+" let g:ctrlp_user_command='ag %s -l --nocolor -g ""'
 " let g:ctrlp_working_path_mode = "ra"
 " let g:ctrlp_custom_ignore = {
 "     \ 'dir':    '\v[\/](\.(git|hg|svn)|node_modules|bower_components|target|build|dist)$',
@@ -256,7 +257,49 @@ nnoremap <C-s> <C-a>
 " Save files on focus lost
 au FocusLost * silent! wa
 
+" Coc Configs
+" Use <c-space> to trigger completion.
+set updatetime=300
+set signcolumn=yes
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <silent><expr> <c-space> coc#refresh()
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" Or use `complete_info` if your vim support it, like:
+" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
 
 " Close any hidden buffers
 " Call this with `:call Wipeout()`
@@ -346,3 +389,5 @@ let g:scratch_filetype='markdown'
 " Fzf configs
 " Make sure Ag does not look at the filenames when searching
 command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
+
+map <C-p> :Files<CR>
