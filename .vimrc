@@ -41,6 +41,7 @@ Plug 'tomlion/vim-solidity'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'jparise/vim-graphql'
 Plug 'ianks/vim-tsx'
+Plug 'elixir-editors/vim-elixir'
 
 "Search plugins
 Plug 'mileszs/ack.vim'
@@ -80,7 +81,7 @@ Plug 'epilande/vim-react-snippets'
 " Plug 'christoomey/vim-tmux-navigator'
 
 " FZF (fuzzy finder) for searching files and other stuff
-Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 call plug#end()
@@ -115,6 +116,10 @@ set fillchars+=vert:\
 set cursorcolumn
 set cursorline
 
+" Update gutter styles
+" highlight SignColumn guibg=#899BA6
+highlight SignColumn guibg=NONE
+
 set number
 set relativenumber
 
@@ -148,7 +153,7 @@ let g:Powerline_symbols = 'fancy'
 set encoding=utf-8
 set t_Co=256
 set fillchars+=stl:\ ,stlnc:\
-set term=xterm-256color
+"set term=xterm-256color
 set termencoding=utf-8
 
 "Airline (powerline alt)
@@ -213,7 +218,8 @@ let g:ctrlp_user_command='ag %s -l --nocolor -g ""'
 let g:ackprg = 'ag --nogroup --nocolor --column'
 cnoreabbrev Ack Ack!
 
-" ALE Fixers
+" ALE config
+let g:ale_change_sign_column_color=0
 let g:ale_fixers = {
 \   'javascript': [
 \       'eslint'
@@ -312,7 +318,8 @@ tmap <C-w>z <C-w>N <bar> :ZoomToggle<CR>
 
 " coc configs!
 " Support for some extensions
-let g:coc_global_extensions = ['coc-emoji', 'coc-tsserver', 'coc-prettier', 'coc-ultisnips']
+set signcolumn=auto:2
+let g:coc_global_extensions = ['coc-emoji', 'coc-tsserver', 'coc-prettier', 'coc-ultisnips', 'coc-elixir']
 " Use Ctrl-j and Ctrl-k to go navigate to issues
 nmap <silent> <C-j> <Plug>(coc-diagnostic-next)
 nmap <silent> <C-k> <Plug>(coc-diagnostic-prev)
@@ -325,6 +332,9 @@ nmap <silent> gr <Plug>(coc-references)
 " " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 " <CR> to confirm completion, use: >
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
+
+" use :Format to format current buffer
+command! -nargs=0 Format :call CocAction('format')
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -341,7 +351,6 @@ let g:scratch_horizontal=0
 let g:scratch_top=0
 let g:scratch_persistence_file='.scratch.md'
 let g:scratch_filetype='markdown'
-
 
 " Fzf configs
 " Make sure Ag does not look at the filenames when searching
