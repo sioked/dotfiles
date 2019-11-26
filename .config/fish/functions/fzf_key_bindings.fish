@@ -1,0 +1,1 @@
+/home/sioked/.fzf/shell/key-bindings.fish
