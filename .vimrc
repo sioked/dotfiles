@@ -69,7 +69,7 @@ Plug 'tpope/vim-surround'
 " Prettier - will make javascript/typescript/graphql files pretty
 " post install (yarn install | npm install) then load plugin only for editing supported files
 " Use with <Leader>p to prettify a file
-Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'branch': 'release/1.x' }
 
 " Snippets plugin
 Plug 'SirVer/ultisnips'
@@ -80,9 +80,12 @@ Plug 'epilande/vim-react-snippets'
 " panes in tmux
 " Plug 'christoomey/vim-tmux-navigator'
 
-" FZF (fuzzy finder) for searching files and other stuff
+" fzf (fuzzy finder) for searching files and other stuff
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+
+" Tabular - Align text
+Plug 'godlygeek/tabular'
 
 call plug#end()
 
@@ -231,6 +234,9 @@ let g:ale_fixers = {
 \   'typescript': [
 \       'tslint'
 \   ],
+\   'ruby': [
+\       'rubocop'
+\   ],
 \}
 
 let g:ale_linters = {
@@ -239,6 +245,7 @@ let g:ale_linters = {
 \       'prettier',
 \       'tsserver',
 \   ],
+\   'ruby': ['rubocop']
 \}
 " ALE navigate between errors
 " nmap <silent> <C-k> <Plug>(ale_previous_wrap)
@@ -361,7 +368,6 @@ tmap <C-w>z <C-w>N <bar> :ZoomToggle<CR>
 
 " coc configs!
 " Support for some extensions
-set signcolumn=auto:2
 let g:coc_global_extensions = ['coc-emoji', 'coc-tsserver', 'coc-prettier', 'coc-ultisnips', 'coc-elixir']
 " Use Ctrl-j and Ctrl-k to go navigate to issues
 nmap <silent> <C-j> <Plug>(coc-diagnostic-next)
