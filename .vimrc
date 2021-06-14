@@ -29,7 +29,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 "Syntaxes
-Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'
 Plug 'pangloss/vim-javascript'
 Plug 'othree/html5.vim'
 Plug 'hail2u/vim-css3-syntax'
@@ -232,20 +232,15 @@ let g:ale_fixers = {
 \       'eslint'
 \   ],
 \   'typescript': [
-\       'tslint'
-\   ],
-\   'ruby': [
-\       'rubocop'
+\       'eslint'
 \   ],
 \}
 
 let g:ale_linters = {
 \   'typescript': [
-\       'tslint',
+\       'eslint',
 \       'prettier',
-\       'tsserver',
 \   ],
-\   'ruby': ['rubocop']
 \}
 " ALE navigate between errors
 " nmap <silent> <C-k> <Plug>(ale_previous_wrap)

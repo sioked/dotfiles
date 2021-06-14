@@ -1,3 +1,5 @@
 barnybug-archive/docker-fish-completion
 oh-my-fish/plugin-grc
 danhper/fish-ssh-agent
+evanlucas/fish-kubectl-completions
+jorgebucaran/fisher
