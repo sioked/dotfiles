@@ -14,6 +14,7 @@ SETUVAR __fish_classic_git_prompt_initialized:\x1d
 SETUVAR __fish_init_2_39_8:\x1d
 SETUVAR __fish_init_2_3_0:\x1d
 SETUVAR __fish_init_3_x:\x1d
+SETUVAR __fish_initialized:3100
 SETUVAR _fisher_barnybug_2D_archive_2F_docker_2D_fish_2D_completion_files:/Users/edsiok/\x2econfig/fish/functions/docker\x2dcompose\x2efish\x1e/Users/edsiok/\x2econfig/fish/functions/docker\x2efish
 SETUVAR _fisher_danhper_2F_fish_2D_ssh_2D_agent_files:/Users/edsiok/\x2econfig/fish/functions/__ssh_agent_is_started\x2efish\x1e/Users/edsiok/\x2econfig/fish/functions/__ssh_agent_start\x2efish\x1e/Users/edsiok/\x2econfig/fish/conf\x2ed/fish\x2dssh\x2dagent\x2efish
 SETUVAR _fisher_evanlucas_2F_fish_2D_kubectl_2D_completions_files:/Users/edsiok/\x2econfig/fish/completions/kubectl\x2efish
@@ -31,6 +32,7 @@ SETUVAR fish_color_error:dc322f
 SETUVAR fish_color_escape:ffff00
 SETUVAR fish_color_history_current:normal
 SETUVAR fish_color_host:normal
+SETUVAR fish_color_host_remote:yellow
 SETUVAR fish_color_match:normal
 SETUVAR fish_color_normal:normal
 SETUVAR fish_color_operator:ffff00

@@ -34,3 +34,14 @@ map('i', 'jj', '<ESC>')
 -- Nvim Tree --
 map('n', '<C-\\>', ':NvimTreeToggle<CR>')
 map('i', '<C-\\>', ':NvimTreeToggle<CR>')
+
+-- LSPSaga --
+map('n', '<Leader>ca', ':Lspsaga code_action<CR>')
+map('n', '<Leader>la', ':Lspsaga code_action<CR>')
+map('v', '<Leader>ca', ':Lspsaga code_action<CR>')
+map('v', '<Leader>la', ':Lspsaga code_action<CR>')
+map('n', 'K', ':Lspsaga hover_doc<CR>')
+map('n', '<Leader>lh', ':Lspsaga hover_doc<CR>')
+map('n', '<Leader>lr', ':Lspsaga rename<CR>')
+map('n', '<Leader>ld', ':Lspsaga preview_definition<CR>')
+

@@ -8,3 +8,4 @@ alias gittodos='git diff --name-only origin/develop | xargs grep --exclude=\'*/d
 # Project specific
 # alias rtdb='dropdb right-track-api; createdb right-track-api; npm run db:migrate -- --env local; npm run db:seed -- --env local;'
 alias tmam='tmux attach-session -t masterly'
+alias k=kubectl

@@ -5,6 +5,7 @@ local pack_use = function()
   -- Color Scheme --
   use "arcticicestudio/nord-vim"
   use "rakr/vim-one"
+  use 'navarasu/onedark.nvim'
 
   -- Lualine (Statusline) support --
   use 'hoob3rt/lualine.nvim'
@@ -29,12 +30,20 @@ local pack_use = function()
   use "neovim/nvim-lspconfig"
   use "kabouzeid/nvim-lspinstall"
   use "folke/trouble.nvim"
+  use "glepnir/lspsaga.nvim"
 
   -- Autocomplete --
   use "hrsh7th/nvim-compe"
+  use 'ray-x/lsp_signature.nvim'
 
   -- Smart code highlighting (still in beta) --
   use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
+
+  -- Session management --
+  use 'rmagatti/auto-session'
+
+  -- Surround support --
+  use 'blackCauldron7/surround.nvim'
 end
 
 local function load_plugins()
