@@ -1,18 +1,15 @@
 -- local map = vim.api.nvim_set_keymap
-function map(mode, key, result, opts)
-  local options = {noremap=true, silent=true}
-  if opts then 
-    options = vim.tbl_extend("force", options, opts)
-  end
-  vim.api.nvim_set_keymap(mode, key, result, options)
-end
+local map = require('utils').map
 
 -- keep selected text when indenting  --
 map('v', '<', '<gv')
 map('v', '>', '>gv')
 
--- Remap C-s to increment a number under cursor --
+-- Quick edit VimRC --
+map('n', '<Leader>rc', ':e $MYVIMRC<CR>')
+map('n', '<Leader>sv', ':so $MYVIMRC<CR>')
 
+-- Remap C-s to increment a number under cursor --
 map('n', '<C-s>', '<C-a>')
 
 -- Telescope --
@@ -45,3 +42,11 @@ map('n', '<Leader>lh', ':Lspsaga hover_doc<CR>')
 map('n', '<Leader>lr', ':Lspsaga rename<CR>')
 map('n', '<Leader>ld', ':Lspsaga preview_definition<CR>')
 
+-- Trouble --
+map('n', '<Leader>xx', ':TroubleToggle<CR>')
+map('n', '<Leader>xw', ':TroubleToggle lsp_workspace_disagnostics<CR>')
+map('n', '<Leader>xd', ':TroubleToggle lsp_document_diagnostics<CR>')
+map('n', '<Leader>xq', ':TroubleToggle quickfix<CR>')
+
+-- Formatter --
+map('n', '<Leader>p', '<cmd>lua vim.lsp.buf.formatting()<CR>')
