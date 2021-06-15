@@ -25,3 +25,12 @@ map('n', '<Leader>ch', ':Telescope command_history theme=get_dropdown<CR>')
 -- Commenting --
 map('n', '<Leader>cc', ':CommentToggle<CR>')
 map('v', '<Leader>cc', ':\'<,\'>CommentToggle<CR>')
+
+-- Remapping for escape --
+map('i', 'jk', '<ESC>')
+map('i', 'kj', '<ESC>')
+map('i', 'jj', '<ESC>')
+
+-- Nvim Tree --
+map('n', '<C-\\>', ':NvimTreeToggle<CR>')
+map('i', '<C-\\>', ':NvimTreeToggle<CR>')

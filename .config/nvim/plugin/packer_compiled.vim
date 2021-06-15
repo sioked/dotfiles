@@ -76,9 +76,33 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/edsiok/.local/share/nvim/site/pack/packer/start/lualine.nvim"
   },
-  ["nova-vim"] = {
+  ["nord-vim"] = {
     loaded = true,
-    path = "/Users/edsiok/.local/share/nvim/site/pack/packer/start/nova-vim"
+    path = "/Users/edsiok/.local/share/nvim/site/pack/packer/start/nord-vim"
+  },
+  ["nvim-comment"] = {
+    loaded = true,
+    path = "/Users/edsiok/.local/share/nvim/site/pack/packer/start/nvim-comment"
+  },
+  ["nvim-compe"] = {
+    loaded = true,
+    path = "/Users/edsiok/.local/share/nvim/site/pack/packer/start/nvim-compe"
+  },
+  ["nvim-lspconfig"] = {
+    loaded = true,
+    path = "/Users/edsiok/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
+  },
+  ["nvim-lspinstall"] = {
+    loaded = true,
+    path = "/Users/edsiok/.local/share/nvim/site/pack/packer/start/nvim-lspinstall"
+  },
+  ["nvim-tree.lua"] = {
+    loaded = true,
+    path = "/Users/edsiok/.local/share/nvim/site/pack/packer/start/nvim-tree.lua"
+  },
+  ["nvim-treesitter"] = {
+    loaded = true,
+    path = "/Users/edsiok/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
   },
   ["nvim-web-devicons"] = {
     loaded = true,
@@ -87,6 +111,30 @@ _G.packer_plugins = {
   ["packer.nvim"] = {
     loaded = true,
     path = "/Users/edsiok/.local/share/nvim/site/pack/packer/start/packer.nvim"
+  },
+  ["plenary.nvim"] = {
+    loaded = true,
+    path = "/Users/edsiok/.local/share/nvim/site/pack/packer/start/plenary.nvim"
+  },
+  ["popup.nvim"] = {
+    loaded = true,
+    path = "/Users/edsiok/.local/share/nvim/site/pack/packer/start/popup.nvim"
+  },
+  ["telescope.nvim"] = {
+    loaded = true,
+    path = "/Users/edsiok/.local/share/nvim/site/pack/packer/start/telescope.nvim"
+  },
+  ["trouble.nvim"] = {
+    loaded = true,
+    path = "/Users/edsiok/.local/share/nvim/site/pack/packer/start/trouble.nvim"
+  },
+  ["vim-one"] = {
+    loaded = true,
+    path = "/Users/edsiok/.local/share/nvim/site/pack/packer/start/vim-one"
+  },
+  ["which-key.nvim"] = {
+    loaded = true,
+    path = "/Users/edsiok/.local/share/nvim/site/pack/packer/start/which-key.nvim"
   }
 }
 

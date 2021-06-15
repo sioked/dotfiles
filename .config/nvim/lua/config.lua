@@ -17,12 +17,14 @@ o.splitright = true
 o.splitbelow = true
 o.smartcase = true
 o.lazyredraw = true
+o.listchars = 'tab:»·,trail:·,nbsp:·,extends:›,precedes:‹'
+o.list = true
 
 -- Buffer options
-b.expandtab = true
-b.shiftwidth = 2
-b.tabstop = 4
-b.smartindent = true
+o.expandtab = true
+o.shiftwidth = 2
+o.tabstop = 2
+o.smartindent = true
 
 -- Window options
 w.number = true

@@ -7,8 +7,10 @@ require "plugins.lualine"
 require "plugins.telescope"
 require "plugins.which-key"
 require "plugins.nvim-comment"
-
 require "plugins.nvim-web-devicons"
+require "plugins.nvim-treesitter"
+require "plugins.nvim-lspinstall"
+require "plugins.nvim-compe"
 
 -- Things I need: --
 -- * AutoSaving Sessions

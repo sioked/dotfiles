@@ -16,8 +16,25 @@ local pack_use = function()
     requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
   }
 
+  -- which-key for helping to identify possible next keys --
   use "folke/which-key.nvim"
+
+  -- nvim-comment to auto-comment in code --
   use "terrortylor/nvim-comment"
+
+  -- tree navigator --
+  use 'kyazdani42/nvim-tree.lua'
+
+  -- LSP configs --
+  use "neovim/nvim-lspconfig"
+  use "kabouzeid/nvim-lspinstall"
+  use "folke/trouble.nvim"
+
+  -- Autocomplete --
+  use "hrsh7th/nvim-compe"
+
+  -- Smart code highlighting (still in beta) --
+  use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
 end
 
 local function load_plugins()
