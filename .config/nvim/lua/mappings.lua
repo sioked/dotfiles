@@ -16,8 +16,11 @@ map('n', '<C-s>', '<C-a>')
 map('n', '<Leader>ff', ':Telescope find_files<CR>')
 map('n', '<C-p>', ':Telescope find_files<CR>')
 map('n', '<Leader>fg', ':Telescope live_grep theme=get_ivy<CR>')
+map('n', '<Leader>fb', ':Telescope buffers theme=get_dropdown<CR>')
+map('n', '<Leader>fc', ':Telescope command_history theme=get_dropdown<CR>')
 map('n', '<Leader>bb', ':Telescope buffers theme=get_dropdown<CR>')
 map('n', '<Leader>ch', ':Telescope command_history theme=get_dropdown<CR>')
+map('n', '<Leader>ft', ':Telescope treesitter<CR>')
 
 -- Commenting --
 map('n', '<Leader>cc', ':CommentToggle<CR>')
@@ -41,6 +44,8 @@ map('n', 'K', ':Lspsaga hover_doc<CR>')
 map('n', '<Leader>lh', ':Lspsaga hover_doc<CR>')
 map('n', '<Leader>lr', ':Lspsaga rename<CR>')
 map('n', '<Leader>ld', ':Lspsaga preview_definition<CR>')
+map('n', '<C-j>', ':Lspsaga diagnostic_jump_next<CR>')
+map('n', '<C-k>', ':Lspsaga diagnostic_jump_prev<CR>')
 
 -- Trouble --
 map('n', '<Leader>xx', ':TroubleToggle<CR>')
