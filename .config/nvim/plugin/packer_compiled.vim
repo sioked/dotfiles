@@ -47,8 +47,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/Users/edsiok/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/Users/edsiok/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/Users/edsiok/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/Users/edsiok/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/Users/edsiok/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
+local package_path_str = "/Users/esiok/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/Users/esiok/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/Users/esiok/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/Users/esiok/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/Users/esiok/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -72,69 +72,89 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  ["auto-session"] = {
+    loaded = true,
+    path = "/Users/esiok/.local/share/nvim/site/pack/packer/start/auto-session"
+  },
+  ["lsp_signature.nvim"] = {
+    loaded = true,
+    path = "/Users/esiok/.local/share/nvim/site/pack/packer/start/lsp_signature.nvim"
+  },
+  ["lspsaga.nvim"] = {
+    loaded = true,
+    path = "/Users/esiok/.local/share/nvim/site/pack/packer/start/lspsaga.nvim"
+  },
   ["lualine.nvim"] = {
     loaded = true,
-    path = "/Users/edsiok/.local/share/nvim/site/pack/packer/start/lualine.nvim"
+    path = "/Users/esiok/.local/share/nvim/site/pack/packer/start/lualine.nvim"
   },
   ["nord-vim"] = {
     loaded = true,
-    path = "/Users/edsiok/.local/share/nvim/site/pack/packer/start/nord-vim"
+    path = "/Users/esiok/.local/share/nvim/site/pack/packer/start/nord-vim"
   },
   ["nvim-comment"] = {
     loaded = true,
-    path = "/Users/edsiok/.local/share/nvim/site/pack/packer/start/nvim-comment"
+    path = "/Users/esiok/.local/share/nvim/site/pack/packer/start/nvim-comment"
   },
   ["nvim-compe"] = {
     loaded = true,
-    path = "/Users/edsiok/.local/share/nvim/site/pack/packer/start/nvim-compe"
+    path = "/Users/esiok/.local/share/nvim/site/pack/packer/start/nvim-compe"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
-    path = "/Users/edsiok/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
+    path = "/Users/esiok/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
   },
   ["nvim-lspinstall"] = {
     loaded = true,
-    path = "/Users/edsiok/.local/share/nvim/site/pack/packer/start/nvim-lspinstall"
+    path = "/Users/esiok/.local/share/nvim/site/pack/packer/start/nvim-lspinstall"
   },
   ["nvim-tree.lua"] = {
     loaded = true,
-    path = "/Users/edsiok/.local/share/nvim/site/pack/packer/start/nvim-tree.lua"
+    path = "/Users/esiok/.local/share/nvim/site/pack/packer/start/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
     loaded = true,
-    path = "/Users/edsiok/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
+    path = "/Users/esiok/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
   },
   ["nvim-web-devicons"] = {
     loaded = true,
-    path = "/Users/edsiok/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
+    path = "/Users/esiok/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
+  },
+  ["onedark.nvim"] = {
+    loaded = true,
+    path = "/Users/esiok/.local/share/nvim/site/pack/packer/start/onedark.nvim"
   },
   ["packer.nvim"] = {
     loaded = true,
-    path = "/Users/edsiok/.local/share/nvim/site/pack/packer/start/packer.nvim"
+    path = "/Users/esiok/.local/share/nvim/site/pack/packer/start/packer.nvim"
   },
   ["plenary.nvim"] = {
     loaded = true,
-    path = "/Users/edsiok/.local/share/nvim/site/pack/packer/start/plenary.nvim"
+    path = "/Users/esiok/.local/share/nvim/site/pack/packer/start/plenary.nvim"
   },
   ["popup.nvim"] = {
     loaded = true,
-    path = "/Users/edsiok/.local/share/nvim/site/pack/packer/start/popup.nvim"
+    path = "/Users/esiok/.local/share/nvim/site/pack/packer/start/popup.nvim"
+  },
+  ["surround.nvim"] = {
+    loaded = true,
+    path = "/Users/esiok/.local/share/nvim/site/pack/packer/start/surround.nvim"
   },
   ["telescope.nvim"] = {
     loaded = true,
-    path = "/Users/edsiok/.local/share/nvim/site/pack/packer/start/telescope.nvim"
+    path = "/Users/esiok/.local/share/nvim/site/pack/packer/start/telescope.nvim"
   },
   ["trouble.nvim"] = {
     loaded = true,
-    path = "/Users/edsiok/.local/share/nvim/site/pack/packer/start/trouble.nvim"
+    path = "/Users/esiok/.local/share/nvim/site/pack/packer/start/trouble.nvim"
   },
   ["vim-one"] = {
     loaded = true,
-    path = "/Users/edsiok/.local/share/nvim/site/pack/packer/start/vim-one"
+    path = "/Users/esiok/.local/share/nvim/site/pack/packer/start/vim-one"
   },
   ["which-key.nvim"] = {
     loaded = true,
-    path = "/Users/edsiok/.local/share/nvim/site/pack/packer/start/which-key.nvim"
+    path = "/Users/esiok/.local/share/nvim/site/pack/packer/start/which-key.nvim"
   }
 }
 

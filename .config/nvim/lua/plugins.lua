@@ -1,5 +1,12 @@
-local pack_use = function()
-  local use = require("packer").use
+local fn = vim.fn
+local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+
+if fn.empty(fn.glob(install_path)) > 0 then
+  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+  vim.cmd 'packadd packer.nvim'
+end
+
+return require('packer').startup(function(use)
   use "wbthomason/packer.nvim"
 
   -- Color Scheme --
@@ -24,13 +31,17 @@ local pack_use = function()
   use "terrortylor/nvim-comment"
 
   -- tree navigator --
-  use 'kyazdani42/nvim-tree.lua'
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = 'kyazdani42/nvim-web-devicons',
+    config = function() require'nvim-tree'.setup {} end
+  }
 
   -- LSP configs --
   use "neovim/nvim-lspconfig"
-  use "kabouzeid/nvim-lspinstall"
-  use "folke/trouble.nvim"
-  use "glepnir/lspsaga.nvim"
+  use "williamboman/nvim-lsp-installer"
+  -- use "folke/trouble.nvim"
+  use "tami5/lspsaga.nvim"
 
   -- Autocomplete --
   use "hrsh7th/nvim-compe"
@@ -44,26 +55,17 @@ local pack_use = function()
 
   -- Surround support --
   use 'blackCauldron7/surround.nvim'
-end
 
-local function load_plugins()
-  require("packer").startup(
-  {
-    function()
-      pack_use()
-    end
-  }
-  )
-end
+  -- Editorconfig --
+  use 'editorconfig/editorconfig-vim'
 
-local fn = vim.fn
-local execute = vim.api.nvim_command
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+  -- Prettier config --
+  use {'prettier/vim-prettier', run ='yarn install'}
 
-if fn.empty(fn.glob(install_path)) > 0 then
-  execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
-  load_plugins()
-  require("packer").sync()
-else
-  load_plugins()
-end
+  -- Fugitive / Git --
+  use 'tpope/vim-fugitive'
+
+  if packer_bootstrap then
+    require('packer').sync()
+  end
+end)

@@ -35,3 +35,6 @@
 ## LSP
 `<Leader>p` Format the file (using efm configs)
 
+## LSPInstall
+Currently deprecated
+`LspInstall <language>` to install the language server

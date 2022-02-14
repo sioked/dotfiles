@@ -1,18 +1,18 @@
 local lspconfig = require('lspconfig')
 local map = require('utils').map
 local prettier = require('efm.prettier')
-local eslint = require('efm.eslint')
 
 lspconfig.efm.setup {
   init_options = {documentFormatting = true},
-  -- root_dir = vim.loop.cwd,
+  root_dir = vim.loop.cwd,
+  filetypes = { 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'css', 'scss', 'markdown', 'html', 'json', 'yaml' },
   settings = {
     rootMarkers = {".git/"},
     languages = {
-      typescript = {prettier, eslint},
-      javascript = {prettier, eslint},
-      typescriptreact = {prettier, eslint},
-      javascriptreact = {prettier, eslint},
+      typescript = {prettier},
+      javascript = {prettier},
+      typescriptreact = {prettier},
+      javascriptreact = {prettier},
       yaml = {prettier},
       json = {prettier},
       html = {prettier},
