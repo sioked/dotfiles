@@ -8,6 +8,8 @@
 `<C-\>` Toggle open/close
 `a` add a file
 `d` delete a file
+`c` copy file path to clipboard
+`p` paste file from clipboard
 `<BS>` close currently opened directory
 `r` to rename a file
 `]c` to go to next git changed file

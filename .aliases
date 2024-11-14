@@ -3,9 +3,7 @@
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias gitclean='git branch --merged develop | grep -v develop | grep -v staging | grep -v master | xargs -n 1 git branch -d'
 
-alias gittodos='git diff --name-only origin/develop | xargs grep --exclude=\'*/dist/*\' TODO'
-
 # Project specific
 # alias rtdb='dropdb right-track-api; createdb right-track-api; npm run db:migrate -- --env local; npm run db:seed -- --env local;'
-alias tmam='tmux attach-session -t masterly'
 alias k=kubectl
+alias vim=nvim
