@@ -134,3 +134,50 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ### 14. Install tmux plugins
 
 Start a tmux session, then press `ctrl-a I`.
+
+---
+
+## Remote Access
+
+### Enable SSH and set local hostname
+
+1. Go to **System Settings → General → Sharing**
+2. Turn on **Remote Login**
+3. Under **Local Hostname**, set the name you want to use on your network (e.g. `mycomputer`)
+
+You can then SSH into this machine from any computer on the same network:
+
+```sh
+ssh sioked@mycomputer.local
+```
+
+### Add a public key to authorized_keys
+
+To allow a specific key to authenticate, add its public key to this machine:
+
+```sh
+mkdir -p ~/.ssh
+echo "ssh-ed25519 AAAA... your-key-comment" >> ~/.ssh/authorized_keys
+chmod 600 ~/.ssh/authorized_keys
+```
+
+If your key is stored in 1Password, copy the public key from **1Password → the SSH key item → Public Key** field. Public keys are not sensitive and safe to copy.
+
+### Configure the 1Password SSH agent (on the connecting machine)
+
+The 1Password SSH agent lets you use keys stored in 1Password without ever writing the private key to disk.
+
+1. In 1Password, go to **Settings → Developer**
+2. Enable **Use the SSH agent**
+3. Add the following to `~/.ssh/config` on the connecting machine:
+
+```
+Host *
+  IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+```
+
+Then SSH as normal — 1Password will prompt for biometric approval when the key is used:
+
+```sh
+ssh sioked@mycomputer.local
+```
