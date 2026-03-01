@@ -1,6 +1,0 @@
-{
-  "coc.source.file.enable": true,
-  "tsserver.log": "normal",
-  "tsserver.enableJavascript": true,
-  "diagnostic.signOffset": 9999999
-}
