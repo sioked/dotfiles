@@ -1,7 +1,3 @@
-tap "homebrew/bundle"
-tap "homebrew/cask-fonts"
-tap "homebrew/services"
-
 # Shell & terminal
 brew "fish"
 brew "tmux"
