@@ -44,7 +44,13 @@ return require('packer').startup(function(use)
   use "tami5/lspsaga.nvim"
 
   -- Autocomplete --
-  use "hrsh7th/nvim-compe"
+  use 'hrsh7th/nvim-cmp'
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-calc'
+  use 'L3MON4D3/LuaSnip'
+  use 'saadparwaiz1/cmp_luasnip'
   use 'ray-x/lsp_signature.nvim'
 
   -- Smart code highlighting (still in beta) --
@@ -54,7 +60,7 @@ return require('packer').startup(function(use)
   use 'rmagatti/auto-session'
 
   -- Surround support --
-  use 'blackCauldron7/surround.nvim'
+  use 'kylechui/nvim-surround'
 
   -- Editorconfig --
   use 'editorconfig/editorconfig-vim'
