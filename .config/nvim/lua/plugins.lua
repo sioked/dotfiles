@@ -55,7 +55,7 @@ return require('packer').startup(function(use)
   use 'ray-x/lsp_signature.nvim'
 
   -- Smart code highlighting (still in beta) --
-  use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
+  use {"nvim-treesitter/nvim-treesitter", run = function() vim.cmd("TSUpdate") end}
 
   -- Session management --
   use 'rmagatti/auto-session'
