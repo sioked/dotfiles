@@ -12,7 +12,6 @@ brew "efm-langserver"
 brew "prettier"
 
 # Dev tools
-brew "awscli"
 brew "fzf"
 brew "git"
 brew "gh"
