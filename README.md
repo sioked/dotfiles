@@ -2,6 +2,13 @@
 
 Managed using a bare git repo strategy as described here: [https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/](https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/).
 
+## Docs
+
+- [Fish shell & fzf keybindings](.config/fish/README.md)
+- [Neovim keybindings & plugins](.config/nvim/README.md)
+
+---
+
 ## Prerequisites
 
 Starting assumption: fresh macOS install with nothing except the default Terminal.app and zsh.
