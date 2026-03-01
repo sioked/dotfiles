@@ -53,5 +53,8 @@ map('n', '<Leader>xw', ':TroubleToggle lsp_workspace_disagnostics<CR>')
 map('n', '<Leader>xd', ':TroubleToggle lsp_document_diagnostics<CR>')
 map('n', '<Leader>xq', ':TroubleToggle quickfix<CR>')
 
+-- Diagnostics --
+map('n', '<Leader>e', ':lua vim.diagnostic.open_float()<CR>')
+
 -- Formatter --
 map('n', '<Leader>p', '<cmd>lua vim.lsp.buf.formatting()<CR>')

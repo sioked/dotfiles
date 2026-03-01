@@ -36,11 +36,14 @@
 
 ## lspsaga
 `<Leader>ca` / `<Leader>la` Code action
-`<Leader>lh` / `K` Hover documentation
+`<Leader>lh` / `K` Hover documentation (type info)
 `<Leader>lr` Rename symbol
 `<Leader>ld` Peek definition
 `<C-j>` Jump to next diagnostic
 `<C-k>` Jump to prev diagnostic
+
+## Diagnostics
+`<Leader>e` Show error/warning detail at cursor
 
 ## LSP
 `<Leader>p` Format file (via efm / prettier)

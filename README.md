@@ -89,6 +89,12 @@ echo $(which fish) | sudo tee -a /etc/shells
 chsh -s $(which fish)
 ```
 
+Also create the SSH directory now — some Fish plugins (like `fish-ssh-agent`) expect it to exist:
+
+```sh
+mkdir -p ~/.ssh && chmod 700 ~/.ssh
+```
+
 Open a new terminal session to continue in Fish.
 
 ### 6. Configure iTerm2
