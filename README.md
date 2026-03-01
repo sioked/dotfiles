@@ -96,21 +96,9 @@ Open a new terminal session to continue in Fish.
 - Open iTerm2 (installed via Brewfile)
 - Go to **Preferences → Profiles → Text**
 - Set font to **FiraCode Nerd Font Mono**
+- Fully quit and relaunch iTerm2 (`Cmd+Q`) — required for tmux to get `/dev/tty` access on first launch
 
-### 7. Set up GitHub SSH access (optional but recommended for pushing)
-
-```sh
-ssh-keygen -t ed25519 -C "your@email.com"
-cat ~/.ssh/id_ed25519.pub  # copy this and add it to GitHub → Settings → SSH keys
-ssh -T git@github.com      # verify it works
-```
-
-Then update your dotfiles remote to use SSH:
-```sh
-config remote set-url origin git@github.com:<username>/<repo>.git
-```
-
-### 8. Install Claude Code
+### 7. Install Claude Code
 
 Requires Node — use nvm (installed via Brewfile):
 
@@ -119,40 +107,40 @@ nvm install --lts
 npm install -g @anthropic-ai/claude-code
 ```
 
-### 9. Install Oh My Fish
+### 8. Install Oh My Fish
 
 ```sh
 curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
 ```
 
-### 10. Install fisher and fish plugins
+### 9. Install fisher and fish plugins
 
 ```sh
 curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
 fisher update
 ```
 
-### 11. Install packer.nvim
+### 10. Install packer.nvim
 
 ```sh
 git clone --depth 1 https://github.com/wbthomason/packer.nvim \
   ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 ```
 
-### 12. Install nvim plugins
+### 11. Install nvim plugins
 
 ```sh
 # Inside nvim
 :PackerSync
 ```
 
-### 13. Install tmux plugin manager
+### 12. Install tmux plugin manager
 
 ```sh
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
 
-### 14. Install tmux plugins
+### 13. Install tmux plugins
 
 Start a tmux session, then press `ctrl-a I`.
 
