@@ -38,7 +38,7 @@
 `<Leader>ca` / `<Leader>la` Code action
 `<Leader>lh` / `K` Hover documentation
 `<Leader>lr` Rename symbol
-`<Leader>ld` Preview definition
+`<Leader>ld` Peek definition
 `<C-j>` Jump to next diagnostic
 `<C-k>` Jump to prev diagnostic
 
@@ -46,7 +46,10 @@
 `<Leader>p` Format file (via efm / prettier)
 
 ## LSP servers
-Install language servers with `:LspInstall <language>` (powered by nvim-lsp-installer).
+Managed by **mason.nvim**. Pre-configured servers (`ts_ls`, `eslint`) are auto-installed on startup.
+
+`:Mason` Open the Mason UI to browse and install additional servers
+`:MasonInstall <server>` Install a specific server (e.g. `:MasonInstall lua-language-server`)
 
 ## Commenting
 `<Leader>cc` Toggle comment (normal and visual mode)

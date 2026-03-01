@@ -11,6 +11,10 @@ brew "z"
 # Editor
 brew "neovim"
 
+# LSP / formatting
+brew "efm-langserver"
+brew "prettier"
+
 # Dev tools
 brew "awscli"
 brew "fzf"

@@ -43,7 +43,7 @@ map('v', '<Leader>la', ':Lspsaga code_action<CR>')
 map('n', 'K', ':Lspsaga hover_doc<CR>')
 map('n', '<Leader>lh', ':Lspsaga hover_doc<CR>')
 map('n', '<Leader>lr', ':Lspsaga rename<CR>')
-map('n', '<Leader>ld', ':Lspsaga preview_definition<CR>')
+map('n', '<Leader>ld', ':Lspsaga peek_definition<CR>')
 map('n', '<C-j>', ':Lspsaga diagnostic_jump_next<CR>')
 map('n', '<C-k>', ':Lspsaga diagnostic_jump_prev<CR>')
 
