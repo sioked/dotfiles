@@ -1,47 +1,63 @@
 # Dotfiles
 
-These are my dotfiles. Currently just checking in the files directly in my home directory using the strategy defined here: [https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/](https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/).
+These are my dotfiles. Managed using a bare git repo strategy as described here: [https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/](https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/).
 
 ## Installation
 
-To install on a new machine do:
-1. Set up github ssh access (create new key, add to github)
+1. Set up GitHub SSH access (create new key, add to GitHub)
 
-1. Set up the alias for 'config' in the current shell scope
-  `alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'`
+1. Set up the `config` alias in the current shell scope:
+   ```sh
+   alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+   ```
 
 1. Clone the repo:
-  `git clone --bare <git-repo-url> $HOME/.cfg`
+   ```sh
+   git clone --bare <git-repo-url> $HOME/.cfg
+   ```
 
-1. Checkout the dotfiles
-  `config checkout`
+1. Checkout the dotfiles:
+   ```sh
+   config checkout
+   ```
 
+## Other installs to finish setup
 
-## Other installs to finish setup for computer
+1. Install [Homebrew](https://brew.sh/)
 
-1. [https://brew.sh/](homebrew)
+1. Install Homebrew packages:
+   ```sh
+   brew bundle
+   ```
 
-1. Homebrew packages (includes casks)
-  `brew bundle`
+1. Install [Oh My Fish](https://github.com/oh-my-fish/oh-my-fish):
+   ```sh
+   curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
+   ```
 
-1. Fonts
-  ```
-    brew tap caskroom/fonts
-    brew cask install font-fira-code
-  ```
+1. Install [fisher](https://github.com/jorgebucaran/fisher) and fish plugins:
+   ```sh
+   curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+   fisher update
+   ```
 
-1. Install NVM from here: [https://github.com/creationix/nvm](https://github.com/creationix/nvm)
+1. Install [packer.nvim](https://github.com/wbthomason/packer.nvim):
+   ```sh
+   git clone --depth 1 https://github.com/wbthomason/packer.nvim \
+     ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+   ```
 
-1. Install oh-my-zsh from here: [https://github.com/robbyrussell/oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
+1. Install nvim plugins:
+   ```
+   # Inside nvim
+   :PackerSync
+   ```
 
-1. Install vim-plug from here: [https://github.com/junegunn/vim-plug](https://github.com/junegunn/vim-plug)
+1. Install [tmux plugin manager](https://github.com/tmux-plugins/tpm):
+   ```sh
+   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+   ```
 
-1. Install all vim plugins
-  ```
-  # Inside vim
-  :PlugInstall
-  ```
+1. Install tmux plugins — inside tmux, press: `ctrl-a I`
 
-1. Install tmux plugin manager from here [https://github.com/tmux-plugins/tpm](https://github.com/tmux-plugins/tpm)
-
-1. Inside tmux, do: `ctrl-a I` to install plugins
+1. Set iTerm2 font to **FiraCode Nerd Font Mono** in Preferences → Profiles → Text
