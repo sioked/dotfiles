@@ -35,11 +35,19 @@ echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
 eval "$(/opt/homebrew/bin/brew shellenv)"
 ```
 
-### 3. Clone dotfiles
+### 3. Authenticate with GitHub and clone dotfiles
 
-Clone via HTTPS (no SSH key required). GitHub will prompt for credentials, or you can authenticate with a [personal access token](https://github.com/settings/tokens).
+Install the GitHub CLI and log in — this handles all git authentication over HTTPS without needing a personal access token or SSH key at this stage.
 
 ```sh
+brew install gh
+gh auth login
+```
+
+Then clone and check out the dotfiles:
+
+```sh
+gh auth setup-git
 git clone --bare https://github.com/<username>/<repo>.git $HOME/.cfg
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 config checkout
