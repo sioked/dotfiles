@@ -120,27 +120,21 @@ curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fi
 fisher update
 ```
 
-### 10. Install packer.nvim
+### 10. Install nvim plugins
+
+Open nvim — packer.nvim will be installed automatically and all plugins will sync on first launch. Restart nvim once the sync completes for all plugins to load correctly.
 
 ```sh
-git clone --depth 1 https://github.com/wbthomason/packer.nvim \
-  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+nvim
 ```
 
-### 11. Install nvim plugins
-
-```sh
-# Inside nvim
-:PackerSync
-```
-
-### 12. Install tmux plugin manager
+### 11. Install tmux plugin manager
 
 ```sh
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
 
-### 13. Install tmux plugins
+### 12. Install tmux plugins
 
 Start a tmux session, then press `ctrl-a I`.
 
