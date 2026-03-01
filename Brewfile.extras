@@ -1,0 +1,9 @@
+# Extra dev tools — useful but not required on every machine
+# Install with: brew bundle --file Brewfile.extras
+
+brew "htop"
+brew "httpie"
+brew "rename"
+brew "the_silver_searcher"
+brew "watchman"
+brew "yarn"

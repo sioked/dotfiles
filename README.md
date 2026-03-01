@@ -63,10 +63,16 @@ config checkout
 
 ### 4. Install Homebrew packages
 
-Installs everything in the Brewfile: fish, neovim, tmux, iTerm2, FiraCode Nerd Font, efm-langserver, prettier, and more.
+Installs core tools: fish, neovim, tmux, iTerm2, FiraCode Nerd Font, efm-langserver, prettier, and more.
 
 ```sh
 brew bundle
+```
+
+Optionally install extra dev tools (httpie, htop, yarn, etc.):
+
+```sh
+brew bundle --file Brewfile.extras
 ```
 
 ### 5. Set Fish as your default shell
