@@ -17,6 +17,12 @@ Fuzzy finder powered by [fzf](https://github.com/junegunn/fzf) via the [fzf.fish
 
 Results are shown in an interactive fuzzy finder — type to filter, `Enter` to select, `Ctrl+C` to cancel.
 
+### Mac / iTerm2: enabling the Alt key
+
+The `Ctrl+Alt+*` bindings require Alt, which on Mac is the Option key. By default iTerm2 doesn't send Option as Alt — enable it in:
+
+**iTerm2 → Settings → Profiles → Keys → Left Option Key → Esc+**
+
 ## Plugins
 
 Managed via `fisher`. To see installed plugins:
