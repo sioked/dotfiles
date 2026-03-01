@@ -161,7 +161,21 @@ ssh sioked@mycomputer.local
 
 ### Add a public key to authorized_keys
 
-To allow a specific key to authenticate, add its public key to this machine:
+To allow a specific key to authenticate, add its public key to this machine.
+
+**Using the 1Password CLI (recommended):**
+
+```sh
+# List SSH keys stored in 1Password to find the right name
+op item list --categories "SSH Key"
+
+# Add the public key directly to authorized_keys
+mkdir -p ~/.ssh
+op item get "YOUR KEY NAME" --fields "public key" >> ~/.ssh/authorized_keys
+chmod 600 ~/.ssh/authorized_keys
+```
+
+**Manually:**
 
 ```sh
 mkdir -p ~/.ssh
@@ -169,7 +183,7 @@ echo "ssh-ed25519 AAAA... your-key-comment" >> ~/.ssh/authorized_keys
 chmod 600 ~/.ssh/authorized_keys
 ```
 
-If your key is stored in 1Password, copy the public key from **1Password → the SSH key item → Public Key** field. Public keys are not sensitive and safe to copy.
+The public key can be copied from **1Password → the SSH key item → Public Key** field. Public keys are not sensitive and safe to copy.
 
 ### Configure the 1Password SSH agent (on the connecting machine)
 
