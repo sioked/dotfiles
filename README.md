@@ -85,8 +85,8 @@ brew bundle --file Brewfile.extras
 ### 5. Set Fish as your default shell
 
 ```sh
-echo /opt/homebrew/bin/fish | sudo tee -a /etc/shells
-chsh -s /opt/homebrew/bin/fish
+echo $(which fish) | sudo tee -a /etc/shells
+chsh -s $(which fish)
 ```
 
 Open a new terminal session to continue in Fish.
